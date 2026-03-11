@@ -19,16 +19,12 @@ import { format, parseISO, isToday, isYesterday } from "date-fns";
 const moodIcon = (mood: string) => {
   const cls = "h-4 w-4 flex-shrink-0 mt-0.5";
   switch (mood) {
-    case "Amazing":
+    case "Great":
       return <Laugh className={`${cls} text-yellow-500`} />;
-    case "Good":
-      return <Smile className={`${cls} text-green-500`} />;
     case "Okay":
       return <Meh className={`${cls} text-blue-400`} />;
-    case "Rough":
+    case "Tough":
       return <Frown className={`${cls} text-orange-400`} />;
-    case "Terrible":
-      return <Angry className={`${cls} text-red-400`} />;
     default:
       return <Meh className={`${cls} text-blue-400`} />;
   }
