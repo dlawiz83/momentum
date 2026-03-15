@@ -11,7 +11,7 @@
 [![Supabase](https://img.shields.io/badge/Supabase-Backend-3ecf8e?style=flat-square&logo=supabase)](https://supabase.com)
 [![Remotion](https://img.shields.io/badge/Remotion-Video-ff3d4e?style=flat-square)](https://remotion.dev)
 [![Groq](https://img.shields.io/badge/Groq-AI-f55036?style=flat-square)](https://groq.com)
-🔗 **Live:** [goodmomentum.vercel.app](https://goodmomentum.vercel.app)
+🔗 **Live:** [goodmomentum.vercel.app](https://goodmomentum.vercel.app) · 🎬 **Demo:** [Watch on YouTube](https://youtu.be/fn9uNfZYYB4)
 
 **Built by [Ayesha Dawodi](https://github.com/dlawiz83)**
 </div>
