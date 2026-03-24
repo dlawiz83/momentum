@@ -170,7 +170,7 @@ const HistoryPage = () => {
                           transition={{ delay: i * 0.06 }}
                         >
                           <Link
-                            to="/recaps"
+                            to={`/recaps/${recap.id}`}
                             className="group bg-card rounded-xl border border-border p-6 shadow-sm flex items-center gap-5 hover:border-primary/30 hover:shadow-md transition-all block"
                           >
                             <div className="w-14 h-14 rounded-xl bg-brand-light flex items-center justify-center flex-shrink-0 group-hover:bg-primary/15 transition-colors">
