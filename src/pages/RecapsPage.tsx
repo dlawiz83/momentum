@@ -95,15 +95,17 @@ const RecapsPage = () => {
     enabled: !!user,
   });
 
+  const currentWeekStart = format(weekStart, "yyyy-MM-dd");
+
   const { data: recap, isLoading } = useQuery({
-    queryKey: ["latest-recap", user?.id],
+    queryKey: ["current-week-recap", user?.id, currentWeekStart],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("weekly_recaps")
         .select("*")
-        .order("week_start", { ascending: false })
-        .limit(1)
+        .eq("week_start", currentWeekStart) // ✅ only this week
         .maybeSingle();
+
       if (error) throw error;
       return data;
     },
@@ -140,9 +142,9 @@ const RecapsPage = () => {
       if (data.message === "No logs this week") {
         toast.info("No logs this week to generate a recap");
       } else {
-        toast.success("Recap generated! 🎬");
+        toast.success("Recap generated!");
         setShowVideo(false);
-        queryClient.invalidateQueries({ queryKey: ["latest-recap"] });
+        queryClient.invalidateQueries({ queryKey: ["current-week-recap"] });
         queryClient.invalidateQueries({ queryKey: ["recaps-history"] });
       }
     },
@@ -150,12 +152,8 @@ const RecapsPage = () => {
       toast.error(error?.message || JSON.stringify(error)),
   });
 
-  const displayWeekStart = recap
-    ? format(parseISO(recap.week_start), "MMMM d")
-    : format(weekStart, "MMMM d");
-  const displayWeekEnd = recap
-    ? format(parseISO(recap.week_end), "MMMM d")
-    : format(weekEnd, "MMMM d");
+  const displayWeekStart = format(weekStart, "MMMM d");
+  const displayWeekEnd = format(weekEnd, "MMMM d");
 
   const userName = profile?.display_name?.split(" ")[0] || "You";
   const topCategory = recap?.top_category ?? "General";
@@ -181,8 +179,7 @@ const RecapsPage = () => {
       }
     : null;
 
-  const currentWeekStart = format(weekStart, "yyyy-MM-dd");
-  const recapAlreadyExists = !!recap && recap.week_start === currentWeekStart;
+  const recapAlreadyExists = !!recap;
 
   const renderButton = () => {
     if (recapAlreadyExists) {
