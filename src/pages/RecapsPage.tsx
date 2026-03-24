@@ -181,7 +181,8 @@ const RecapsPage = () => {
       }
     : null;
 
-  const recapAlreadyExists = !!recap;
+  const currentWeekStart = format(weekStart, "yyyy-MM-dd");
+  const recapAlreadyExists = !!recap && recap.week_start === currentWeekStart;
 
   const renderButton = () => {
     if (recapAlreadyExists) {
@@ -209,7 +210,7 @@ const RecapsPage = () => {
     }
     return (
       <div className="text-sm text-muted-foreground bg-muted px-4 py-2 rounded-lg">
-         Available Sunday, {getNextSunday()}
+        Available Sunday, {getNextSunday()}
       </div>
     );
   };
